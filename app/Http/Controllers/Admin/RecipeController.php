@@ -60,24 +60,40 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Recipe $recipe)
     {
-        //
+        return view('recipes.edit', compact('recipe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Recipe $recipe)
     {
-        //
+        $data = $request->all();
+
+        $recipe->name = $data['name'];
+        $recipe->description = $data['description'];
+        $recipe->prep_time = $data['prep_time'];
+        $recipe->image = $data['image'];
+        $recipe->kcal = $data['kcal'];
+        $recipe->pro = $data['pro'];
+        $recipe->carb = $data['carb'];
+        $recipe->fat = $data['fat'];
+
+        $recipe->save();
+
+        return redirect()->route('recipes.show', $recipe);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Recipe $recipe)
     {
-        //
+        $recipe->delete();
+
+        return redirect()->route('recipes.index');
+
     }
 }

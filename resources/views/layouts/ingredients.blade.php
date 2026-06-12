@@ -87,7 +87,7 @@
             <h1 class="h4 mb-0 text-success fw-bold">
                 <i class="bi bi-basket me-2"></i>@yield('title', 'Ingredienti')
             </h1>
-            <a href="{{ route('ingredients.create', $ingredient) }}" class="btn btn-success btn-sm">
+            <a href="{{ route('ingredients.create') }}" class="btn btn-success btn-sm">
                 &oplus; Nuovo ingrediente
             </a>
         </div>

@@ -51,24 +51,31 @@ class MealController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Meal $meal)
     {
-        //
+        return view('meals.edit', compact('meal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Meal $meal)
     {
-        //
+        $data = $request->all();
+
+        $meal->type = $data['type'];
+        $meal->update();
+
+        return redirect()->route('meals.show',$meal);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Meal $meal)
     {
-        //
+        $meal->delete();
+
+        return redirect()->route('meals.index');
     }
 }
