@@ -22,7 +22,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        return view('recipes.create');
     }
 
     /**
@@ -30,7 +30,23 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newRecipe = new Recipe();
+
+        $newRecipe->name = $data['name'];
+        $newRecipe->description = $data['description'];
+        $newRecipe->prep_time = $data['prep_time'];
+        $newRecipe->image = $data['image'];
+        $newRecipe->kcal = $data['kcal'];
+        $newRecipe->pro = $data['pro'];
+        $newRecipe->carb = $data['carb'];
+        $newRecipe->fat = $data['fat'];
+
+        $newRecipe->save();
+
+        return redirect()->route('recipes.show',$newRecipe);
+
     }
 
     /**

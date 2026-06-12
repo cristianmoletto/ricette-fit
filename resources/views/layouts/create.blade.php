@@ -36,7 +36,7 @@
                         <a class="nav-link" href="{{ url('/meals') }}"><i class="bi bi-egg-fried me-1"></i>Pasti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/ingredients') }}"><i class="bi bi-basket me-1"></i>Ingredienti</a>
+                        <a class="nav-link" href="{{ url('/ingredients') }}"><i class="bi bi-basket me-1"></i>Ingredienti</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -82,16 +82,6 @@
     </nav>
     @endauth
 
-    <div class="bg-success bg-opacity-10 border-bottom border-success border-opacity-25 py-3">
-        <div class="container d-flex justify-content-between">
-            <h1 class="h4 mb-0 text-success fw-bold">
-                <i class="bi bi-basket me-2"></i>@yield('title', 'Ingredienti')
-            </h1>
-            <a href="{{ route('ingredients.create', $ingredient) }}" class="btn btn-success btn-sm">
-                &oplus; Nuovo ingrediente
-            </a>
-        </div>
-    </div>
 
     <main class="container py-4 flex-grow-1">
         @yield('content')

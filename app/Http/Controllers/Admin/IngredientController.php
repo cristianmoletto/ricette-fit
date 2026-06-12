@@ -22,7 +22,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        //
+        return view('ingredients.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newIngredient = new Ingredient();
+        $newIngredient->name = $data['name'];
+
+        $newIngredient->save();
+
+        return redirect()->route('ingredients.show',$newIngredient);
     }
 
     /**

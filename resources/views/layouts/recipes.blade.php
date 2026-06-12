@@ -87,7 +87,7 @@
             <h1 class="h4 mb-0 text-success fw-bold">
                 <i class="bi bi-journal-text me-2"></i>@yield('title', 'Ricette')
             </h1>
-            <a href="" class="btn btn-success btn-sm">
+            <a href="{{ route('recipes.create', $recipe) }}" class="btn btn-success btn-sm">
                 &oplus; Nuova ricetta
             </a>
         </div>

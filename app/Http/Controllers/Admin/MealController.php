@@ -22,7 +22,7 @@ class MealController extends Controller
      */
     public function create()
     {
-        //
+        return view('meals.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newMeal = new Meal();
+        $newMeal->type = $data['type'];
+
+        $newMeal->save();
+
+        return redirect()->route('meals.show',$newMeal);
     }
 
     /**
