@@ -1,6 +1,6 @@
 @extends('layouts.ingredients')
 
-@section('title', "Tutti gli ingredienti")
+@section('title', "Ingredienti")
 
 @section("content")
 <div class="container">

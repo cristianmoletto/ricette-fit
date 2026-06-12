@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Meal;
+use App\Http\Controllers\Controller;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
-class MealController extends Controller
+class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $meals = Meal::all();
-        return view('meals.index', compact('meals'));
+        $recipes = Recipe::all();
+        return view('recipes.index', compact('recipes'));
     }
 
     /**
@@ -35,9 +36,9 @@ class MealController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Recipe $recipe)
     {
-        //
+        return view('recipes.show', compact('recipe'));
     }
 
     /**

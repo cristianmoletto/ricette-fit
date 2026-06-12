@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\MealController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\Admin\IngredientController;
+use App\Http\Controllers\Admin\MealController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RecipeController;
+use App\Models\Ingredient;
+use App\Models\Meal;
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('welcome', [
+        'recipesCount'     => Recipe::count(),
+        'ingredientsCount' => Ingredient::count(),
+        'mealsCount'       => Meal::count(),
+    ]);
+})->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,23 +23,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])
-    ->name('admin.')
-    ->prefix('admin')
-    ->group( function (){
+Route::resource('recipes', RecipeController::class)
+    ->middleware(['auth', 'verified']);
 
-        Route::get("/index",[DashboardController::class, 'index'])
-            ->name("index");
+Route::resource('meals', MealController::class)
+    ->middleware(['auth', 'verified']);
 
-        Route::get("/profile",[DashboardController::class, 'profile'])
-            ->name("profile");
-
-    });
-
-
-Route::resource('recipes', RecipeController::class);
-Route::resource('meals', MealController::class);
-Route::resource('ingredients', IngredientController::class);
+Route::resource('ingredients', IngredientController::class)
+    ->middleware(['auth', 'verified']);
     
 
 require __DIR__.'/auth.php';

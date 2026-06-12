@@ -66,6 +66,12 @@
                         </div>
                     </form>
                 </div>
+                @if (Route::has('register'))
+                <div class="card-footer text-center text-muted small">
+                    Non hai un account?
+                    <a href="{{ route('register') }}">Registrati</a>
+                </div>
+                @endif
             </div>
         </div>
     </div>

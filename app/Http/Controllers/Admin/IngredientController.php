@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
@@ -35,9 +36,9 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Ingredient $ingredient)
     {
-        //
+        return redirect()->route("ingredients.index");
     }
 
     /**

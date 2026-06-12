@@ -1,6 +1,6 @@
 @extends('layouts.meals')
 
-@section('title', "Tutti i pasti")
+@section('title', "Pasti")
 
 @section("content")
 
