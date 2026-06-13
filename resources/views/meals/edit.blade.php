@@ -18,11 +18,11 @@
         <!-- Metodo PUT -->
         @method('PUT')
 
-        <div class="form-control  d-flex flex-column">
+        <div class="d-flex flex-column">
             <label for="type" class="form-label">Nome del Pasto</label>
             <input type="text" name="type" id="type" class="form-control mb-3" value="{{ $meal->type }}">
 
-            <input type="submit" value="Salva" class="btn btn-sm btn-success mb-3">
+            <input type="submit" value="Salva" class="btn btn-success mb-3">
 
         </div>
 

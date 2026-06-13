@@ -20,10 +20,10 @@
                 <td>{{ $ingredient->name }}</td>
                 <td>
                     <span>
-                        <a class="btn btn-outline-secondary btn-sm" href="{{ route('ingredients.edit',$ingredient) }}"><i class="bi bi-pencil-square"></i> Modifica</a>
+                        <a class="btn btn-outline-secondary btn-sm" href="{{ route('ingredients.edit',$ingredient) }}"><i class="bi bi-pencil-square"></i></a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteIngredient">
-                            <i class="bi bi-trash3"></i> Elimina
+                            <i class="bi bi-trash3"></i>
                         </button>
                     </span>
                 </td>

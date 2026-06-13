@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
+use App\Models\Meal;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,9 @@ class RecipeController extends Controller
     public function create()
     {
         $ingredients = Ingredient::all();
+        $meals = Meal::all();
 
-        return view('recipes.create', compact('ingredients'));
+        return view('recipes.create', compact('ingredients', 'meals'));
     }
 
     /**
@@ -48,9 +50,11 @@ class RecipeController extends Controller
 
         $newRecipe->save();
 
-        if (!empty($data['ingredients'])) {
-            $newRecipe->ingredients()->sync($data['ingredients']);
+        if ($request->has('ingredients')) {
+            $newRecipe->ingredients()->attach($data['ingredients']);
         }
+
+        $newRecipe->meals()->sync($data['meals'] ?? []);
 
         return redirect()->route('recipes.show',$newRecipe);
 
@@ -70,7 +74,8 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {
         $ingredients = Ingredient::all();
-        return view('recipes.edit', compact('recipe', 'ingredients'));
+        $meals = Meal::all();
+        return view('recipes.edit', compact('recipe', 'ingredients', 'meals'));
     }
 
     /**
@@ -92,6 +97,7 @@ class RecipeController extends Controller
         $recipe->save();
 
         $recipe->ingredients()->sync($data['ingredients'] ?? []);
+        $recipe->meals()->sync($data['meals'] ?? []);
 
         return redirect()->route('recipes.show', $recipe);
     }

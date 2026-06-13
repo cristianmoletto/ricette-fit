@@ -58,6 +58,16 @@
         <h6 class="text-muted"><i class="bi bi-text-paragraph me-1"></i> Descrizione</h6>
         <p class="mb-4">{{ $recipe->description }}</p>
 
+        {{-- Pasti --}}
+        @if($recipe->meals->isNotEmpty())
+        <h6 class="text-muted"><i class="bi bi-egg-fried me-1"></i> Pasti</h6>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            @foreach($recipe->meals as $meal)
+            <span class="badge text-bg-secondary">{{ $meal->type }}</span>
+            @endforeach
+        </div>
+        @endif
+
         {{-- Ingredienti --}}
         @if($recipe->ingredients->isNotEmpty())
         <h6 class="text-muted"><i class="bi bi-fork-knife me-1"></i> Ingredienti</h6>

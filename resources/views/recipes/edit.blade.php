@@ -39,6 +39,18 @@
         <div id="ingredient-dropdown" class="list-group mb-2" style="display:none; max-height:200px; overflow-y:auto;"></div>
 
         <div id="selected-ingredients" class="d-flex flex-wrap gap-2 mb-3"></div>
+
+        <!-- Selettore pasti -->
+        <label class="form-label"><i class="bi bi-egg-fried" style="color:green"></i> Pasti</label>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            @foreach($meals as $meal)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="meals[]" value="{{ $meal->id }}" id="meal_{{ $meal->id }}"
+                    {{ $recipe->meals->contains($meal->id) ? 'checked' : '' }}>
+                <label class="form-check-label" for="meal_{{ $meal->id }}">{{ $meal->type }}</label>
+            </div>
+            @endforeach
+        </div>
         <hr>
 
         <div class="col mb-3">
