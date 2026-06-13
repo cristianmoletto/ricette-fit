@@ -12,18 +12,19 @@
         <h5 class="mb-0">Aggiungi una ricetta</h5>
     </div>
 
-    <form action="{{ route("recipes.store") }}" method="POST" class="card-body">
+    <form action="{{ route("recipes.store") }}" method="POST" class="card-body" enctype="multipart/form-data">
         @csrf
 
         <div class="d-flex flex-column">
             <label for="name" class="form-label"><i class="bi bi-alphabet" style="color:green"></i> Nome Ricetta</label>
-            <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Inserisci il nome della ricetta">
+            <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Inserisci il nome della ricetta" required>
+
 
             <label for="image" class="form-label"> <i class="bi bi-image" style="color:green"></i> Immagine</label>
-            <input type="text" name="image" id="image" class="form-control mb-3" placeholder="Inserisci l'url dell'immagine">
+            <input type="file" name="image" id="image" class="form-control mb-3" required>
 
             <label for="description" class="form-label"><i class="bi bi-text-paragraph" style="color:green"></i> Descrizione</label>
-            <textarea type="text" name="description" id="description" width="100%" rows="4" class="form-control mb-3" placeholder="Scrivi i passaggi per la preparazione"></textarea>
+            <textarea type="text" name="description" id="description" width="100%" rows="4" class="form-control mb-3" placeholder="Scrivi i passaggi per la preparazione" required></textarea>
 
             <!-- Selettore ingredienti -->
             <label class="form-label"><i class="bi bi-fork-knife" style="color:green"></i> Ingredienti</label>
@@ -54,7 +55,7 @@
 
                 <div class="col">
                     <label for="kcal" class="form-label">Calorie</label>
-                    <input type="number" name="kcal" id="kcal" class="form-control" readonly>
+                    <input type="number" name="kcal" id="kcal" class="form-control" readonly value="0">
                 </div>
                 <div class="col">
                     <label class="form-label" for="pro">Proteine</label>

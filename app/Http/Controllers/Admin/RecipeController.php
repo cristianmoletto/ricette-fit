@@ -7,6 +7,7 @@ use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
@@ -42,11 +43,21 @@ class RecipeController extends Controller
         $newRecipe->name = $data['name'];
         $newRecipe->description = $data['description'];
         $newRecipe->prep_time = $data['prep_time'];
-        $newRecipe->image = $data['image'];
+        // $newRecipe->image = $data['image'];
         $newRecipe->kcal = $data['kcal'];
         $newRecipe->pro = $data['pro'];
         $newRecipe->carb = $data['carb'];
         $newRecipe->fat = $data['fat'];
+
+        if(array_key_exists('image',$data)){
+
+            // carico nuova img
+            $img_url = Storage::putFile('recipes', $data['image']);
+
+            // aggiorno il db
+            $newRecipe->image = $img_url;
+        }
+
 
         $newRecipe->save();
 
@@ -88,11 +99,26 @@ class RecipeController extends Controller
         $recipe->name = $data['name'];
         $recipe->description = $data['description'];
         $recipe->prep_time = $data['prep_time'];
-        $recipe->image = $data['image'];
         $recipe->kcal = $data['kcal'];
         $recipe->pro = $data['pro'];
         $recipe->carb = $data['carb'];
         $recipe->fat = $data['fat'];
+
+        // if ($request->hasFile('image')) {
+        //     $recipe->image = Storage::disk('public')->putFile('recipes_images', $request->file('image'));
+        // }
+
+        if(array_key_exists('image',$data)){
+
+            // elimino l'immagine precedente
+            Storage::delete($recipe->image);
+
+            // carico nuova img
+            $img_url = Storage::putFile('recipes', $data['image']);
+
+            // aggiorno il db
+            $recipe->image = $img_url;
+        }
 
         $recipe->save();
 
@@ -107,6 +133,8 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        $recipe->meals()->detach();
+        $recipe->ingredients()->detach();
         $recipe->delete();
 
         return redirect()->route('recipes.index');

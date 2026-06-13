@@ -33,7 +33,7 @@
                         <a class="nav-link active" href="{{ url('/recipes') }}"><i class="bi bi-journal-text me-1"></i>Ricette</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/meals') }}"><i class="bi bi-egg-fried me-1"></i>Pasti</a>
+                        <a class="nav-link" href="{{ url('/meals') }}"><i class="bi bi-fork-knife me-1"></i>Pasti</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/ingredients') }}"><i class="bi bi-basket me-1"></i>Ingredienti</a>

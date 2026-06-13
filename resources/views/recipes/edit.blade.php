@@ -13,7 +13,7 @@
 </div>
 
 
-<form action="{{ route("recipes.update",$recipe) }}" method="POST" class="card-body">
+<form action="{{ route("recipes.update",$recipe) }}" method="POST" class="card-body" enctype="multipart/form-data">
     @csrf
     
     <!-- Metodo PUT -->
@@ -24,13 +24,16 @@
 
     <div class="d-flex flex-column">
         <label for="name" class="form-label"><i class="bi bi-alphabet" style="color:green"></i> Nome Ricetta</label>
-        <input type="text" name="name" id="name" class="form-control mb-3" value="{{ $recipe->name }}">
+        <input type="text" name="name" id="name" class="form-control mb-3" value="{{ $recipe->name }}" required>
 
         <label for="image" class="form-label"><i class="bi bi-image" style="color:green"></i> Immagine</label>
-        <input type="text" name="image" id="image" class="form-control mb-3" value="{{ $recipe->image }}">
+        @if($recipe->image)
+            <img src="{{ asset('storage/' . $recipe->image) }}" class="img-thumbnail mb-2" style="width:50px">
+        @endif
+        <input type="file" name="image" id="image" class="form-control mb-3">
 
         <label for="description" class="form-label"><i class="bi bi-text-paragraph" style="color:green"></i> Descrizione</label>
-        <textarea name="description" id="description" rows="4" class="form-control mb-3">{{ $recipe->description }}</textarea>
+        <textarea name="description" id="description" rows="4" class="form-control mb-3" required>{{ $recipe->description }}</textarea>
 
         <!-- Selettore ingredienti -->
         <label class="form-label"><i class="bi bi-fork-knife" style="color:green"></i> Ingredienti</label>

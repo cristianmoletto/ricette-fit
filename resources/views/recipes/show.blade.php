@@ -14,7 +14,7 @@
 
     {{-- Immagine hero --}}
     @if($recipe->image)
-    <img src="{{ $recipe->image }}" class="card-img-top object-fit-cover" style="max-height:180px;" alt="{{ $recipe->name }}">
+    <img src="{{ asset('storage/' . $recipe->image) }}" class="card-img-top object-fit-cover" style="max-height:200px;" alt="{{ $recipe->name }}">
     @endif
     
     {{-- Header --}}
@@ -101,14 +101,14 @@
 <div class="modal fade" id="deleteRecipe" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header border-0">
+            <div class="modal-header">
                 <h5 class="modal-title text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Elimina ricetta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Vuoi eliminare <strong>{{ $recipe->name }}</strong>? L'operazione non è reversibile.
             </div>
-            <div class="modal-footer border-0">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Annulla</button>
                 <form action="{{ route('recipes.destroy', $recipe) }}" method="POST">
                     @csrf

@@ -15,7 +15,7 @@
 
         <div class="d-flex flex-column">
             <label for="type" class="form-label">Nome Pasto</label>
-            <input type="text" name="type" id="type" class="form-control mb-3">
+            <input type="text" name="type" id="type" class="form-control mb-3" required>
 
             <input type="submit" value="Salva" class="btn btn-success mb-3">
 

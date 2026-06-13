@@ -45,7 +45,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/meals') }}">
-                                <i class="bi bi-egg-fried me-1"></i>Pasti
+                                <i class="bi bi-fork-knife me-1"></i>Pasti
                             </a>
                         </li>
                         <li class="nav-item">

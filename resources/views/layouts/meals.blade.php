@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{{ url('/recipes') }}"><i class="bi bi-journal-text me-1"></i>Ricette</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/meals') }}"><i class="bi bi-egg-fried me-1"></i>Pasti</a>
+                        <a class="nav-link active" href="{{ url('/meals') }}"><i class="bi bi-fork-knife me-1"></i>Pasti</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/ingredients') }}"><i class="bi bi-basket me-1"></i>Ingredienti</a>
@@ -85,7 +85,7 @@
     <div class="bg-success bg-opacity-10 border-bottom border-success border-opacity-25 py-3">
         <div class="container d-flex justify-content-between">
             <h1 class="h4 mb-0 text-success fw-bold">
-                <i class="bi bi-egg-fried me-2"></i>@yield('title', 'Pasti')
+                <i class="bi bi-fork-knife me-2"></i>@yield('title', 'Pasti')
             </h1>
                 <a href="{{ route('meals.create') }}" class="btn btn-success btn-sm">
                     &oplus; Nuovo pasto

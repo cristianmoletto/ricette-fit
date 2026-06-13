@@ -64,11 +64,11 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteMeal">Modal title</h1>
+                <h5 class="modal-title text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Elimina pasto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Vuoi eliminare il pasto?
+                Vuoi eliminare <span class="fw-semibold">{{ $meal->type }}</span>? L'operazione non è reversibile.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>

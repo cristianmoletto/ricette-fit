@@ -20,9 +20,9 @@
                 <td>{{ $ingredient->name }}</td>
                 <td>
                     <span>
-                        <a class="btn btn-outline-secondary btn-sm" href="{{ route('ingredients.edit',$ingredient) }}"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm opacity-75" href="{{ route('ingredients.edit',$ingredient) }}"><i class="bi bi-pencil-square"></i></a>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteIngredient">
+                        <button type="button" class="btn btn-outline-danger btn-sm opacity-75" data-bs-toggle="modal" data-bs-target="#deleteIngredient">
                             <i class="bi bi-trash3"></i>
                         </button>
                     </span>
@@ -38,11 +38,11 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteIngredient">Modal title</h1>
+                <h5 class="modal-title text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Elimina ingrediente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Vuoi eliminare l'ingrediente?
+                Vuoi eliminare <span class="fw-semibold">{{ $ingredient->name }}</span>? L'operazione non è reversibile.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
