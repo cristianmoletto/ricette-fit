@@ -85,7 +85,7 @@
     <div class="bg-success bg-opacity-10 border-bottom border-success border-opacity-25 py-3">
         <div class="container d-flex justify-content-between">
             <h1 class="h4 mb-0 text-success fw-bold">
-                <i class="bi bi-journal-text me-2"></i>@yield('title', 'Ricette')
+                <i class="bi bi-journal-text me-2"></i>Ricette
             </h1>
             <a href="{{ route('recipes.create') }}" class="btn btn-success btn-sm">
                 &oplus; Nuova ricetta

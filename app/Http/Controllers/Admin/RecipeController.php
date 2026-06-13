@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipes.create');
+        $ingredients = Ingredient::all();
+
+        return view('recipes.create', compact('ingredients'));
     }
 
     /**
@@ -45,6 +48,10 @@ class RecipeController extends Controller
 
         $newRecipe->save();
 
+        if (!empty($data['ingredients'])) {
+            $newRecipe->ingredients()->sync($data['ingredients']);
+        }
+
         return redirect()->route('recipes.show',$newRecipe);
 
     }
@@ -62,7 +69,8 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return view('recipes.edit', compact('recipe'));
+        $ingredients = Ingredient::all();
+        return view('recipes.edit', compact('recipe', 'ingredients'));
     }
 
     /**
@@ -82,6 +90,8 @@ class RecipeController extends Controller
         $recipe->fat = $data['fat'];
 
         $recipe->save();
+
+        $recipe->ingredients()->sync($data['ingredients'] ?? []);
 
         return redirect()->route('recipes.show', $recipe);
     }

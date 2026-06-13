@@ -6,22 +6,22 @@
 
 <a class="btn btn-outline-secondary my-3" href="{{ route("meals.index") }}"><i class="bi bi-x-lg"></i> Annulla</a>
 
-<form action="{{ route("meals.store") }}" method="POST" class="card shadow-sm">
-    @csrf
-
-
+<div class="card shadow-sm">
     <div class="card-header bg-dark text-white">
         <h5 class="mb-0">Aggiungi un nuovo pasto</h5>
     </div>
+    <form action="{{ route("meals.store") }}" method="POST" class="card-body">
+        @csrf
 
-    <div class="form-control  d-flex flex-column">
-        <label for="type">Nome Pasto</label>
-        <input type="text" name="type" id="type" class="mb-3">
+        <div class="form-control  d-flex flex-column">
+            <label for="type" class="form-label">Nome Pasto</label>
+            <input type="text" name="type" id="type" class="form-control mb-3">
 
-        <input type="submit" value="Salva" class="btn btn-sm btn-success mb-3">
+            <input type="submit" value="Salva" class="btn btn-sm btn-success mb-3">
 
-    </div>
+        </div>
 
-</form>
+    </form>
+</div>
 
 @endsection

@@ -7,7 +7,7 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
-    <title>Ingredienti &mdash; Ricette Fit</title>
+    <title>@yield('title') &mdash; Ricette Fit</title>
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
@@ -96,6 +96,7 @@
     </footer>
     @endauth
 
+    @stack('scripts')
 </body>
 
 </html>
