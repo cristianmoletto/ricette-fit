@@ -27,6 +27,8 @@
         </tr>
     </thead>
     <tbody>
+
+        {{-- Ciclazione delle ricette --}}
         @foreach ($recipes as $recipe)
 
         <tr class="position-relative">
@@ -38,10 +40,14 @@
             <td>{{ $recipe->pro }}g</td>
             <td>{{ $recipe->carb }}g</td>
             <td>{{ $recipe->fat }}g</td>
-            <td><a href="{{ route('recipes.show', $recipe) }}" class="stretched-link"></a><i class="bi bi-chevron-right"></i></a></td>
+            <td> {{-- la classe stretched-link permette di rendere cliccabile tutta la riga --}}
+                <a href="{{ route('recipes.show', $recipe) }}" class="stretched-link"></a>
+                <i class="bi bi-chevron-right"></i>
+            </td>
             
         </tr>
         @endforeach
+
     </tbody>
 </table>
 

@@ -4,7 +4,7 @@
 
 @section("content")
 
-{{-- Card form con pulsante annulla e header scuro --}}
+{{-- Card form base --}}
 <x-form-card title="Modifica il pasto" :cancelRoute="route('meals.index')">
 
     <form action="{{ route('meals.update', $meal) }}" method="POST" class="card-body">

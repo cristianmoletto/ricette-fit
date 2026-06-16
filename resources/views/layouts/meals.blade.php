@@ -12,6 +12,7 @@
 
 <body class="bg-light d-flex flex-column min-vh-100">
 
+    {{-- header --}}
     @auth
     <x-app-header active="meals" />
     @endauth
@@ -24,10 +25,12 @@
         createLabel="Nuovo pasto"
     />
 
+    {{-- content --}}
     <main class="container py-4 flex-grow-1">
         @yield('content')
     </main>
 
+    {{-- footer --}}
     @auth
     <x-app-footer />
     @endauth

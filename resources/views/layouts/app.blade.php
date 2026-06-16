@@ -17,14 +17,17 @@
 <body class="bg-light min-vh-100 d-flex flex-column">
     <div id="app" class="d-flex flex-column min-vh-100">
 
+        {{-- header --}}
         @auth
         <x-app-header active="home" />
         @endauth
 
+        {{-- main --}}
         <main class="py-4 flex-grow-1">
             @yield('content')
         </main>
 
+        {{-- footer --}}
         @auth
         <x-app-footer />
         @endauth

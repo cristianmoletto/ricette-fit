@@ -1,36 +1,41 @@
-<script>
-    /**
-     * Funzioni script-recipes:
+
+   <!-- * Usa codice JS per la gestione dello script
+
+     * Funzioni:
      *  1. Calcolo automatico delle calorie al cambio di macro
      *  2. Aggiornamento live del valore dello slider prep_time
      *  3. Ricerca ingredienti con dropdown e selezione tramite badge
      *  4. (solo edit) Pre-caricamento degli ingredienti già associati alla ricetta
-     * 
-     *  Incluso in recipes/create.blade.php e recipes/edit.blade.php
-     */
+     *   -->
 
 
+<script>
+    
     // Calcolo calorie
-    const kcalInput = document.getElementById('kcal');
-    const proInput  = document.getElementById('pro');
-    const carbInput = document.getElementById('carb');
-    const fatInput  = document.getElementById('fat');
+    // ottengo gli input dal dom tramite id 
+    const [kcalInput, proInput, carbInput, fatInput] =
+      ['kcal', 'pro', 'carb', 'fat'].map(id => document.getElementById(id));
 
+    // funzione di calcolo delle calorie
     function updateKcal() {
         const pro  = parseFloat(proInput.value)  || 0;
         const carb = parseFloat(carbInput.value) || 0;
         const fat  = parseFloat(fatInput.value)  || 0;
-        kcalInput.value = (pro * 4) + (carb * 4) + (fat * 9); // formula calorie
+        kcalInput.value = (pro * 4) + (carb * 4) + (fat * 9); 
     }
 
     // Ascolta i cambiamenti su tutti e tre i campi macro
     [proInput, carbInput, fatInput].forEach(el => el.addEventListener('input', updateKcal));
 
 
-    // Slider per tempo di preparazione
+    // SLIDER per tempo di preparazione
     // Mostra il valore corrente dello slider nell'elemento #prep_time_value
-    const prepRange = document.getElementById('prep_time');
-    const prepValue = document.getElementById('prep_time_value');
+
+    // ottengo gli elementi dal dom
+    const [prepRange, prepValue] =
+      ['prep_time', 'prep_time_value'].map(id => document.getElementById(id));
+    
+      // assegno il valore
     prepRange.addEventListener('input', () => prepValue.textContent = prepRange.value);
 
 
@@ -38,16 +43,20 @@
     const ingredients = @json($ingredients); 
     const selected = {}; // mappa {id: true} per evitare duplicati nel form
 
-    const searchInput       = document.getElementById('ingredient-search');
-    const dropdown          = document.getElementById('ingredient-dropdown');
-    const selectedContainer = document.getElementById('selected-ingredients');
-
+    // ottengo i valori dal dom
+    const [searchInput, dropdown, selectedContainer] =
+      ['ingredient-search', 'ingredient-dropdown', 'selected-ingredients'].map(id => document.getElementById(id));
+    
 
     // Pre-caricamento (per edit)
-        @isset($recipe) // solo se la ricetta esiste, caricamento ingredienti
-        @php $preselected = $recipe->ingredients->pluck('id', 'name'); @endphp
+    @isset($recipe) // solo se la ricetta esiste, caricamento ingredienti
+
+        @php $preselected = $recipe->ingredients->pluck('id', 'name'); // pluck ricerca per id e nome
+        @endphp
+
         const preselected = @json($preselected);
         Object.entries(preselected).forEach(([name, id]) => addIngredient({ id, name }));
+    
     @endisset
 
 
@@ -94,6 +103,7 @@
         const badge = document.createElement('span');
         badge.className = 'badge bg-success d-flex align-items-center gap-1'; // crea un badge con nome ingrediente, input hidden per id e pulsante x rimozione
         badge.innerHTML = `${ingredient.name}
+
             <input type="hidden" name="ingredients[]" value="${ingredient.id}">
             <button type="button" class="btn-close btn-close-white btn-sm" style="font-size:.6rem;" aria-label="Rimuovi"></button>`;
 
@@ -107,4 +117,5 @@
         searchInput.value = '';
         dropdown.style.display = 'none';
     }
+
 </script>

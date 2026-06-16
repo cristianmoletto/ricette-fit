@@ -4,7 +4,7 @@
 
 @section("content")
 
-{{-- Card form con pulsante annulla e header scuro --}}
+{{-- Card form base --}}
 <x-form-card title="Aggiungi un nuovo ingrediente" :cancelRoute="route('ingredients.index')">
 
     <form action="{{ route('ingredients.store') }}" method="POST" class="card-body">

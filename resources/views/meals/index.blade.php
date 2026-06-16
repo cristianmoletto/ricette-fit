@@ -37,7 +37,7 @@
     </div>
 </div>
 
-{{-- Modal di conferma eliminazione (usa l'ultimo $meal del foreach) --}}
+{{-- Modal di conferma eliminazione --}}
 <x-delete-modal
     id="deleteMeal"
     title="Elimina pasto"
