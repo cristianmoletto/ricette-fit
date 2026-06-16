@@ -11,10 +11,16 @@ class IngredientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ingredients = Ingredient::all();
-        return view('ingredients.index', compact('ingredients'));
+        $search = $request->input('search');
+
+        $ingredients = Ingredient::orderBy('id')
+            ->when($search, fn($q) => $q->where('name', 'like', "%{$search}%"))
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('ingredients.index', compact('ingredients', 'search'));
     }
 
     /**

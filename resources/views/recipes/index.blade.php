@@ -4,13 +4,18 @@
 
 @section("content")
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<!-- Componente search-bar -->
+<x-search-bar
+    action="{{ route('recipes.index') }}"
+    value="{{ $search ?? '' }}"
+    placeholder="Cerca ricetta..."
+    resetRoute="{{ route('recipes.index') }}" {{-- reset della ricerca --}}
+/>
 
-</div>
-
+<!-- Tabella index ricette -->
 <table class="table table-striped table-hover">
-    <thead>
-        <tr>
+    <thead >
+        <tr class="">
             <th scope="col">Ricetta</th>
             <th scope="col">Ingredienti</th>
             <th scope="col">Tempo</th>
@@ -39,5 +44,10 @@
         @endforeach
     </tbody>
 </table>
+
+<!-- Paginazione da components -->
+<div class="d-flex justify-content-center mt-3">
+    {{ $recipes->links('components.pagination') }}
+</div>
 
 @endsection

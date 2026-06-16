@@ -1,32 +1,25 @@
 @extends('layouts.create')
 
-@section('title',"Modifica l'ingrediente")
+@section('title', "Modifica l'ingrediente")
 
 @section("content")
 
-<a class="btn btn-outline-secondary my-3" href="{{ route("ingredients.index") }}"><i class="bi bi-x-lg"></i> Annulla</a>
+{{-- Card form con pulsante annulla e header scuro --}}
+<x-form-card title="Modifica l'ingrediente" :cancelRoute="route('ingredients.index')">
 
-<div class="card">
+    <form action="{{ route('ingredients.update', $ingredient) }}" method="POST" class="card-body">
+        @csrf
+        @method('PUT')
 
-    <div class="card-header bg-dark text-white">
-        <h5 class="mb-0">Modifica l'ingrediente</h5>
-    </div>
+        <div class="d-flex flex-column">
+            <label for="name" class="form-label">Nome Ingrediente</label>
+            <input type="text" name="name" id="name" class="form-control mb-3" value="{{ $ingredient->name }}" required>
 
-<form action="{{ route("ingredients.update", $ingredient) }}" method="POST" class="card-body">
-    @csrf
+            <input type="submit" value="Salva" class="btn btn-success mb-3">
+        </div>
 
-    <!-- Metodo PUT -->
-    @method('PUT')
+    </form>
 
-    <div class="d-flex flex-column">
-        <label for="name" class="form-label">Nome Ingrediente</label>
-        <input type="text" name="name" id="name" class="form-control mb-3" value="{{ $ingredient->name }}" required>
-
-        <input type="submit" value="Salva" class="btn btn-success mb-3">
-
-    </div>
-
-</form>
-</div>
+</x-form-card>
 
 @endsection

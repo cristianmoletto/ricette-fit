@@ -23,6 +23,8 @@ class MealController extends Controller
     public function create()
     {
         return view('meals.create');
+
+        
     }
 
     /**

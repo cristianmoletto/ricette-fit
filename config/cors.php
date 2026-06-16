@@ -19,7 +19,10 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('APP_FRONTEND_URL1','APP_FRONTEND_URL2')],
+    'allowed_origins' => [
+        env('APP_FRONTEND_URL2'),
+        env('APP_FRONTEND_URL1')
+    ],
 
     'allowed_origins_patterns' => [],
 

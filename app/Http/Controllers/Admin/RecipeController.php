@@ -14,10 +14,16 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $recipes = Recipe::all();
-        return view('recipes.index', compact('recipes'));
+        $search = $request->input('search');
+
+        $recipes = Recipe::orderBy('name')
+            ->when($search, fn($q) => $q->where('name', 'like', "%{$search}%"))
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('recipes.index', compact('recipes', 'search'));
     }
 
     /**
