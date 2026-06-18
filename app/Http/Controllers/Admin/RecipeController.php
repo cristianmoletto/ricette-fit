@@ -124,7 +124,7 @@ class RecipeController extends Controller
             $recipe->image = $img_url;
         }
 
-        $recipe->save();
+        $recipe->update();
 
         $recipe->ingredients()->sync($data['ingredients'] ?? []);
         $recipe->meals()->sync($data['meals'] ?? []);
