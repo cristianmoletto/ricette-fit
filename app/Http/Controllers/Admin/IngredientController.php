@@ -13,8 +13,10 @@ class IngredientController extends Controller
      */
     public function index(Request $request)
     {
+        // ricerca ingrediente specifico
         $search = $request->input('search');
 
+        // ordina lista ingredienti
         $ingredients = Ingredient::orderBy('id')
             ->when($search, fn($q) => $q->where('name', 'like', "%{$search}%"))
             ->paginate(10)

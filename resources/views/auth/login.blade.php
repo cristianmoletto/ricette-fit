@@ -4,8 +4,9 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h4 class="mb-3"><i class="bi bi-heart-pulse-fill"> </i>Sezione Admin di Ricette Fit</h4>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header bg-success text-white">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -53,13 +54,13 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                <a class="mx-2 link-success small" href="{{ route('password.request') }}">
+                                    {{ __('Dimenticato la password?') }}
                                 </a>
                                 @endif
                             </div>
@@ -67,9 +68,9 @@
                     </form>
                 </div>
                 @if (Route::has('register'))
-                <div class="card-footer text-center text-muted small">
+                <div class="card-footer text-center text-opacity-75 small bg-success text-white ">
                     Non hai un account?
-                    <a href="{{ route('register') }}">Registrati</a>
+                    <a class="link-light link-opacity-75 link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover" href="{{ route('register') }}" >Registrati</a>
                 </div>
                 @endif
             </div>

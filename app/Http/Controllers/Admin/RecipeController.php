@@ -16,8 +16,10 @@ class RecipeController extends Controller
      */
     public function index(Request $request)
     {
+        // ricerca ricetta specifica
         $search = $request->input('search');
 
+        // ordinamento ricette
         $recipes = Recipe::orderBy('name')
             ->when($search, fn($q) => $q->where('name', 'like', "%{$search}%"))
             ->paginate(10)
@@ -109,10 +111,6 @@ class RecipeController extends Controller
         $recipe->pro = $data['pro'];
         $recipe->carb = $data['carb'];
         $recipe->fat = $data['fat'];
-
-        // if ($request->hasFile('image')) {
-        //     $recipe->image = Storage::disk('public')->putFile('recipes_images', $request->file('image'));
-        // }
 
         if(array_key_exists('image',$data)){
 
